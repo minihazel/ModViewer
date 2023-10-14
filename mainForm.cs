@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -346,8 +347,8 @@ namespace ModViewer
             System.Windows.Forms.Label label = (System.Windows.Forms.Label)sender;
             if (sender is System.Windows.Forms.Label lbl)
             {
-                if (lbl.Name.StartsWith("serverBtn") ||
-                    lbl.Name.StartsWith("clientBtn"))
+                if (lbl.Name.ToLower().StartsWith("serverbtn") ||
+                    lbl.Name.ToLower().StartsWith("clientbtn"))
                 {
                     lbl.BackColor = listSelectedcolor;
                 }
@@ -359,8 +360,8 @@ namespace ModViewer
             System.Windows.Forms.Label label = (System.Windows.Forms.Label)sender;
             if (sender is System.Windows.Forms.Label lbl)
             {
-                if (lbl.Name.StartsWith("serverBtn") ||
-                    lbl.Name.StartsWith("clientBtn"))
+                if (lbl.Name.ToLower().StartsWith("serverbtn") ||
+                    lbl.Name.ToLower().StartsWith("clientbtn"))
                 {
                     lbl.BackColor = listBackcolor;
                 }
@@ -407,22 +408,76 @@ namespace ModViewer
         private void serverAction(object sender, MouseEventArgs e)
         {
             System.Windows.Forms.Label label = (System.Windows.Forms.Label)sender;
-            if (label.Name.StartsWith("serverBtn"))
+            if (label.Name.ToLower().StartsWith("serverbtn"))
             {
-                inputForm frm = new inputForm(this);
-                frm.Tag = label.Name;
-                frm.ShowDialog(this);
+                if (label.Tag == "inputrequired")
+                {
+                    inputForm frm = new inputForm(this);
+                    frm.Tag = label.Name;
+                    frm.ShowDialog(this);
+                }
+                else
+                {
+                    switch (label.Text.ToLower())
+                    {
+                        case "open mods folder":
+                            string userModsPath = userModsFolder();
+
+                            ProcessStartInfo modsApp = new ProcessStartInfo();
+                            modsApp.WorkingDirectory = userModsPath;
+                            modsApp.FileName = userModsPath;
+                            modsApp.UseShellExecute = true;
+                            modsApp.Verb = "open";
+
+                            try
+                            {
+                                Process.Start(modsApp);
+                            }
+                            catch (Exception err)
+                            {
+                                Debug.WriteLine($"ERROR: {err.ToString()}");
+                                System.Windows.Forms.MessageBox.Show($"Oops! It seems like we received an error. If you're uncertain what it\'s about, please message the developer with a screenshot:\n\n{err.ToString()}", this.Text, MessageBoxButtons.OK);
+                            }
+                            break;
+                        case "open plugins folder":
+                            string pluginsPath = BepinPluginsFolder();
+
+                            ProcessStartInfo pluginsApp = new ProcessStartInfo();
+                            pluginsApp.WorkingDirectory = pluginsPath;
+                            pluginsApp.FileName = pluginsPath;
+                            pluginsApp.UseShellExecute = true;
+                            pluginsApp.Verb = "open";
+
+                            try
+                            {
+                                Process.Start(pluginsApp);
+                            }
+                            catch (Exception err)
+                            {
+                                Debug.WriteLine($"ERROR: {err.ToString()}");
+                                System.Windows.Forms.MessageBox.Show($"Oops! It seems like we received an error. If you're uncertain what it\'s about, please message the developer with a screenshot:\n\n{err.ToString()}", this.Text, MessageBoxButtons.OK);
+                            }
+                            break;
+                    }
+                }
             }
         }
 
         private void clientAction(object sender, MouseEventArgs e)
         {
             System.Windows.Forms.Label label = (System.Windows.Forms.Label)sender;
-            if (label.Name.StartsWith("clientBtn"))
+            if (label.Name.ToLower().StartsWith("clientbtn"))
             {
-                inputForm frm = new inputForm(this);
-                frm.Tag = label.Name;
-                frm.ShowDialog(this);
+                if (label.Tag == "inputrequired")
+                {
+                    inputForm frm = new inputForm(this);
+                    frm.Tag = label.Name;
+                    frm.ShowDialog(this);
+                }
+                else
+                {
+
+                }
             }
         }
 

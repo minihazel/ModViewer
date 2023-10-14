@@ -60,6 +60,7 @@
             this.clientBtnConfigFolder = new System.Windows.Forms.Label();
             this.clientConfigFolderTitle = new System.Windows.Forms.Label();
             this.placeholder = new System.Windows.Forms.Label();
+            this.serverBtnOpenModsFolder = new System.Windows.Forms.Label();
             this.panelServerInfo.SuspendLayout();
             this.panelClientInfo.SuspendLayout();
             this.SuspendLayout();
@@ -104,6 +105,7 @@
             // 
             this.panelServerInfo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelServerInfo.Controls.Add(this.serverBtnOpenModsFolder);
             this.panelServerInfo.Controls.Add(this.serverBtnDelete);
             this.panelServerInfo.Controls.Add(this.serverBtnDisable);
             this.panelServerInfo.Controls.Add(this.panel3);
@@ -536,6 +538,22 @@
             this.placeholder.Text = "label1";
             this.placeholder.Visible = false;
             // 
+            // serverBtnOpenModsFolder
+            // 
+            this.serverBtnOpenModsFolder.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.serverBtnOpenModsFolder.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
+            this.serverBtnOpenModsFolder.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.serverBtnOpenModsFolder.Font = new System.Drawing.Font("Bahnschrift Light", 10F);
+            this.serverBtnOpenModsFolder.Location = new System.Drawing.Point(7, 561);
+            this.serverBtnOpenModsFolder.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.serverBtnOpenModsFolder.Name = "serverBtnOpenModsFolder";
+            this.serverBtnOpenModsFolder.Padding = new System.Windows.Forms.Padding(10, 0, 0, 2);
+            this.serverBtnOpenModsFolder.Size = new System.Drawing.Size(508, 40);
+            this.serverBtnOpenModsFolder.TabIndex = 44;
+            this.serverBtnOpenModsFolder.Text = "OPEN MODS FOLDER";
+            this.serverBtnOpenModsFolder.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // mainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
@@ -596,6 +614,7 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label serverBtnConfigFolder;
         private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label serverBtnOpenModsFolder;
     }
 }
 
